@@ -1,1 +1,1 @@
-echo "node_modules/" >> .gitignore
+echo "node_modules/" >> .gitignorefirebase-service-account.json
