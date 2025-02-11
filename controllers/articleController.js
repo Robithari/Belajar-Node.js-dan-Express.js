@@ -1,8 +1,8 @@
-const db = require("../config/firebase"); // Pastikan Firebase terhubung
+const db = require("../config/firebase");
 
 const addArticle = async (req, res) => {
     try {
-        const { title, slug, content } = req.body;
+        const { title, slug, content, photoUrl, caption, titleKeterangan } = req.body;
 
         if (!title || !slug || !content) {
             return res.status(400).json({ error: "Semua field harus diisi!" });
@@ -12,6 +12,9 @@ const addArticle = async (req, res) => {
             title,
             slug,
             content,
+            photoUrl,
+            caption,
+            titleKeterangan,
             createdAt: new Date()
         });
 
@@ -54,7 +57,7 @@ const getArticleBySlug = async (req, res) => {
 const updateArticle = async (req, res) => {
     try {
         const { id } = req.params;
-        const { title, slug, content } = req.body;
+        const { title, slug, content, photoUrl, caption, titleKeterangan } = req.body;
 
         if (!title || !slug || !content) {
             return res.status(400).json({ error: "Semua field harus diisi!" });
@@ -64,6 +67,9 @@ const updateArticle = async (req, res) => {
             title,
             slug,
             content,
+            photoUrl,
+            caption,
+            titleKeterangan,
             updatedAt: new Date()
         });
 
@@ -83,5 +89,4 @@ const deleteArticle = async (req, res) => {
     }
 };
 
-// Pastikan semua fungsi diekspor
 module.exports = { addArticle, getAllArticles, getArticleBySlug, updateArticle, deleteArticle };
